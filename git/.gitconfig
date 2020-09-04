@@ -1,0 +1,22 @@
+[user]
+	name = samuel_gagnepain
+	email = samuel.gagnepain@gmail.com
+[color]
+	ui = true
+[alias]
+	lol = log --graph --decorate --color --pretty=oneline --abbrev-commit --all
+	gog = log --graph --decorate --color --all
+[push]
+	default = upstream
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = false
+[commit]
+	template = /Users/samuel_gagnepain/.gitmessage.txt
+[hub]
+  protocol = ssh # Github uses https by default
