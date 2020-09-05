@@ -16,7 +16,8 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = false
+	editor = vim
 [commit]
-	template = /Users/samuel_gagnepain/.gitmessage.txt
+	template = ~/.gitmessage.txt
 [hub]
-  protocol = ssh # Github uses https by default
+	protocol = ssh # Github uses https by default

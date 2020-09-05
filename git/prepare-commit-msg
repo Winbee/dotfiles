@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+"""
+This is a prepare-commit-msg hook
+
+Copy this file to $GITREPOSITORY/.git/hooks/prepare-commit-msg
+and mark it executable.
+
+It will prepend "<ticket-id>: " to your commit message.
+
+Assumes you name your branches jira-id-whatever.
+For example: FEWG-12345678-my-cool-feature
+
+"""
+import subprocess
+import sys
+from typing import List
+
+
+def get_ticket_id() -> str:
+    """Return the story id number associated with the current branch"""
+    branchname: str = subprocess.check_output(
+        ["/usr/bin/git", "branch", "--show-current"]
+    ).decode("utf-8")
+    # This looks like: JIRA-12234-my-cool-feature
+    args: List[str] = branchname.split("-")
+    if len(args) < 3:
+        raise ValueError("Branch name not in expected format")
+    return f"{args[0]}-{args[1]}"
+
+
+def prepend_commit_msg(commit_msg_filepath: str, text: str) -> None:
+    """Prepend the commit message with `text`"""
+    with open(commit_msg_filepath) as f:
+        contents: str = f.read()
+
+    with open(commit_msg_filepath, "w") as f:
+        # Don't append if it's already there
+        if not contents.startswith(text):
+            f.write(text)
+        f.write(contents)
+
+
+def main():
+    # Fail silently
+    try:
+        print("prepare-commit-msg...")
+        # Collect the parameters
+        commit_msg_filepath = sys.argv[1]
+        print(f"File: {commit_msg_filepath}")
+        if len(sys.argv) > 2:
+            commit_source = sys.argv[2]
+            print(f"Source of the commit message: {commit_source}")
+        if len(sys.argv) > 3:
+            commit_hash = sys.argv[3]
+            print(f"SHA-1: {commit_hash}")
+        ticket_id = get_ticket_id()
+        header = f"{ticket_id}: "
+        prepend_commit_msg(commit_msg_filepath, header)
+    except:
+        pass
+
+
+if __name__ == "__main__":
+    main()
