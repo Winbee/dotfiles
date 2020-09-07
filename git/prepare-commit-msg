@@ -13,6 +13,7 @@ For example: FEWG-12345678-my-cool-feature
 """
 import subprocess
 import sys
+import re
 from typing import List
 
 
@@ -22,10 +23,11 @@ def get_ticket_id() -> str:
         ["/usr/bin/git", "branch", "--show-current"]
     ).decode("utf-8")
     # This looks like: JIRA-12234-my-cool-feature
-    args: List[str] = branchname.split("-")
-    if len(args) < 3:
+    regex = r"^(?P<ticket_id>\w+\-\d+)\-"
+    response = re.search(regex, branchname)
+    if not response:
         raise ValueError("Branch name not in expected format")
-    return f"{args[0]}-{args[1]}"
+    return response.group('ticket_id')
 
 
 def prepend_commit_msg(commit_msg_filepath: str, text: str) -> None:
