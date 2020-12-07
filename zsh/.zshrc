@@ -1,3 +1,7 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 function addPath(){
   test -e $1 && export PATH=$PATH:$1
@@ -5,7 +9,6 @@ function addPath(){
 
 ## Add Home Bin
 addPath "$HOME/bin"
-addPath "$HOME/.bin"
 
 # Lazyload NVM
 lazynvm() {

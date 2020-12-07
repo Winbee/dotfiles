@@ -1,0 +1,1 @@
+To install prezto: https://github.com/sorin-ionescu/prezto
