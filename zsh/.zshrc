@@ -3,6 +3,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Add brew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 function addPath(){
   test -e $1 && export PATH=$PATH:$1
 }
@@ -47,6 +55,7 @@ alias help='tldr'
 alias k='kubectl'
 alias cls="clear"
 alias h="history"
+alias doco="docker-compose"
 
 # Kill all running containers.
 alias dockerkillall='docker kill $(docker ps -q)'
@@ -76,3 +85,6 @@ ensure_tmux_is_running
 
 # Unbind "^S" history-incremental-pattern-search-forwar to be able to use it in tmux
 bindkey -r "^S"
+# Emacs mode
+bindkey -e
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
