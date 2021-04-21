@@ -1,0 +1,13 @@
+session_name: dev
+start_directory: ~/projects/hotjar/
+windows:
+  - layout: tiled
+    panes:
+      - cd insights
+      - cd insights-webapp
+      - cd insights
+      - cd insights-webapp
+  - panes:
+      - cd insights-webapp
+  - panes:
+      - cd insights-webapp

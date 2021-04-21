@@ -17,6 +17,8 @@ function addPath(){
 
 ## Add Home Bin
 addPath "$HOME/bin"
+## Add python libs
+addPath "$HOME/Library/Python/3.9/bin"
 
 # Lazyload NVM
 lazynvm() {

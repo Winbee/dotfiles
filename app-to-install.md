@@ -27,6 +27,7 @@
 - zsh
 - prezto
 - tmux
+- tmuxp
 
 ## Lib/utils
 - jq
