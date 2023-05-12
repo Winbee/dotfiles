@@ -1,5 +1,5 @@
 session_name: dev
-start_directory: ~/projects/hotjar/
+start_directory: ~/workspace/pro/
 windows:
   - layout: tiled
     panes:

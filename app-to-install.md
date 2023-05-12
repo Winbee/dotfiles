@@ -1,4 +1,5 @@
 # Main
+
 - brew
 - nano
 - vim
@@ -8,6 +9,7 @@
 - virtualenv
 
 ## Others
+
 - joplin
 - cashcash
 - krita
@@ -20,9 +22,10 @@
 - openoffice
 - insomnia
 - gifski
-
+- devToys
 
 ## Terminal
+
 - iTerm 2 (osx)
 - zsh
 - prezto
@@ -30,6 +33,7 @@
 - tmuxp
 
 ## Lib/utils
+
 - jq
 - tldr
 - git
